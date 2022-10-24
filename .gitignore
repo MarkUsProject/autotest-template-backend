@@ -1,0 +1,5 @@
+# all
+.idea
+__pycache__
+.DS_Store
+# TODO: add additional gitignore rules here

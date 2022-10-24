@@ -1,0 +1,6 @@
+version: 2
+updates:
+  - package-ecosystem: # TODO: set a package-ecosystem depending on your tester language
+    directory: "/"
+    schedule:
+      interval: "monthly"

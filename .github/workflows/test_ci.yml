@@ -1,0 +1,8 @@
+name: Autotester backend tests
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened, ready_for_review ]
+jobs:
+  test:
+    if: github.event.pull_request.draft == false
+    # TODO: set up the rest of the CI test environment here

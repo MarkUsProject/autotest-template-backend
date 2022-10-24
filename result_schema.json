@@ -1,0 +1,135 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "tests",
+      "extra_info"
+    ],
+    "properties": {
+      "time": {
+        "type": "number",
+        "description": "the time it took to run this test group in milliseconds"
+      },
+      "timeout": {
+        "type": "number",
+        "description": "the timeout value in seconds (only set this if the tests actually timed out)"
+      },
+      "tests": {
+        "type": "array",
+        "description": "test results",
+        "items": {
+          "type": "object",
+          "required": [
+            "test_name",
+            "output",
+            "marks_earned",
+            "marks_total",
+            "status"
+          ],
+          "properties": {
+            "test_name": {
+              "type": "string",
+              "description": "the name of the test"
+            },
+            "output": {
+              "type": "string",
+              "description": "any additional information provided by the test run (test result output for example)"
+            },
+            "marks_earned": {
+              "type": "number",
+              "description": "the number of marks earned by running this test"
+            },
+            "marks_total": {
+              "type": "number",
+              "description": "the number of total possible marks that can be earned from running this test"
+            },
+            "status": {
+              "type": "string",
+              "enum": ["pass", "fail", "partial", "error"],
+              "description": "the status of the test"
+            },
+            "time": {
+              "type": "string",
+              "description": "the amount of time in milliseconds it took to run the test"
+            }
+          }
+        }
+      },
+      "stderr": {
+        "type": "string",
+        "description": "messages written to stderr while running the tests"
+      },
+      "malformed": {
+        "type": "string",
+        "descriptions": "messages written to stdout if the test results reported by the tester were malformed (not valid json)"
+      },
+      "extra_info": {
+        "type": "object",
+        "description": "the content of the extra_info field from the settings (used to run this group of tests)"
+      },
+      "annotations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "a relative path (from the root of the test directory) to the file to annotate"
+            },
+            "content": {
+              "type": "string",
+              "description": "a string containing the content/message of the annotation"
+            },
+            "line_start": {
+              "type": "integer",
+              "description": "an integer indicating which line the annotation starts at (1-indexed)"
+            },
+            "line_end": {
+              "type": "integer",
+              "description": "an integer indicating which line the annotation ends at (1-indexed)"
+            },
+            "column_start": {
+              "type": "integer",
+              "description": "an integer indicating which character/column the annotation starts at (0-indexed)"
+            },
+            "column_end": {
+              "type": "integer",
+              "description": "an integer indicating which character/column the annotation ends at (0-indexed)"
+            }
+          }
+        }
+      },
+      "feedback": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "filename",
+            "mime_type",
+            "id"
+          ],
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "the name of the feedback file"
+            },
+            "mime_type": {
+              "type": "string",
+              "description": "the mime type of the feedback file"
+            },
+            "compression": {
+              "type": "string",
+              "const": "gzip",
+              "description": "gzip if the file content is gzip compressed or null otherwise"
+            },
+            "id": {
+              "type": "integer",
+              "description": "a unique id used to look up the file content of the feedback file stored in the redis database"
+            }
+          }
+        }
+      }
+    }
+  }
+}
