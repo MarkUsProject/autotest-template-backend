@@ -14,7 +14,8 @@ def run_test(
     """
     Run a single test with the files from files_url using the settings with id settings_id that match the category
     in categories.
-    test_env_vars are passed to the test as additional anvironment variables.
+    test_env_vars are passed to the test as additional environment variables.
+    test settings are passed to the test as the first argument to the tester script.
     user is used to authenticate with the request to the client to retrieve the files at files_url.
 
     Results from the test are written back to the redis database using the test_id to label the results.
